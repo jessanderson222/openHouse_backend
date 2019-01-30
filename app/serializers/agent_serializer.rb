@@ -1,5 +1,5 @@
 class AgentSerializer < ActiveModel::Serializer
-    attributes: :name, :profile_picture, :company, :email
+    attributes :name, :img_url, :company, :email
     has_many :properties
     has_many :matches, through: :properties
 end 

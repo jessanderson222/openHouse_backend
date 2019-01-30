@@ -22,7 +22,7 @@ class Api::V1::RentersController < ApplicationController
 
     private
     def renter_params 
-        params.permit(:username, :password, :email, :bedrooms, :bathrooms, :distance_to_subway, :borough, :neighborhood, :pet_friendly, :elevator, :laundry, :doorman, :move_in_date, :rent_min, :rent_max)
+        params.permit(:username, :img_url, :password, :email, :bedrooms, :bathrooms, :distance_to_subway, :borough, :neighborhood, :pet_friendly, :elevator, :laundry, :doorman, :move_in_date, :rent_min, :rent_max)
     end 
  
 end

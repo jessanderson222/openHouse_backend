@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2019_01_30_141137) do
     t.string "name"
     t.string "email"
     t.string "company"
+    t.string "img_url"
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -58,6 +59,7 @@ ActiveRecord::Schema.define(version: 2019_01_30_141137) do
     t.string "username"
     t.string "email"
     t.string "password_digest"
+    t.string "img_url"
     t.integer "bedrooms"
     t.integer "bathrooms"
     t.float "distance_to_subway"

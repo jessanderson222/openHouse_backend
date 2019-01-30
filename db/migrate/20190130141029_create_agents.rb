@@ -4,7 +4,7 @@ class CreateAgents < ActiveRecord::Migration[5.2]
       t.string :name
       t.string :email
       t.string :company 
-      t.string :email
+      t.string :img_url
       t.string :password_digest
 
       t.timestamps
