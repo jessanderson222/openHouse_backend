@@ -5,7 +5,7 @@ class CreateProperties < ActiveRecord::Migration[5.2]
 
       t.integer :bedrooms
       t.integer :bathrooms 
-      t.integer :distance_to_subway 
+      t.float :distance_to_subway 
       t.string :borough 
       t.string :neighborhood
       t.boolean :pet_friendly 
