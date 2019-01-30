@@ -16,7 +16,7 @@ class Api::V1::AgentsController < ApplicationController
 
     private
     def agent_params
-        params.require(:agent).permit(:name, :profile_picture, :email, :password)
+        params.require(:agent).permit(:name, :profile_picture, :company, :email, :password)
     end 
 
 
