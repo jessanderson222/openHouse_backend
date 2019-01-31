@@ -11,7 +11,13 @@ class Api::V1::RentersController < ApplicationController
 
     def create
         @renter = Renter.create(renter_params)
-        render json: @renter, status: 201
+        if @renter.valid?
+        render json: { renter: RenterSerializer.new(@renter) },
+        status: :created 
+        else 
+            render json: {error: 'failed to create account'},
+            status: :not_acceptable
+        end 
     end 
 
     def update
@@ -22,7 +28,7 @@ class Api::V1::RentersController < ApplicationController
 
     private
     def renter_params 
-        params.permit(:username, :img_url, :password, :email, :bedrooms, :bathrooms, :distance_to_subway, :borough, :neighborhood, :pet_friendly, :elevator, :laundry, :doorman, :move_in_date, :rent_min, :rent_max)
+        params.require(:renter).permit(:username, :img_url, :password, :email, :bedrooms, :bathrooms, :distance_to_subway, :borough, :neighborhood, :pet_friendly, :elevator, :laundry, :doorman, :move_in_date, :rent_min, :rent_max)
     end 
  
 end
