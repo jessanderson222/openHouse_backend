@@ -17,7 +17,7 @@ class Api::V1::MatchesController < ApplicationController
     def update
         @match = Match.find(params[:id])
         @match.update(match_params)
-        @render json: @match, status: 200
+        render json: @match, status: 200
     end 
 
     def destroy
