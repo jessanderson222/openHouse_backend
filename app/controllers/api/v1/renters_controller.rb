@@ -2,6 +2,10 @@ require "pry"
 class Api::V1::RentersController < ApplicationController
     skip_before_action :authorized, only: [:create]
     
+    def profile 
+        render json: { renter: RenterSerializer.new(current_renter) }, status: :accepted
+    end 
+
     def index
         @renters = Renter.all 
         render(json: @renters)
