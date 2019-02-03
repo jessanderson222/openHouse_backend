@@ -13,7 +13,6 @@ class Api::V1::RentersController < ApplicationController
     end 
 
     def create
-        
         @renter = Renter.create(renter_params)
         if @renter.valid?
             @token = encode_token(renter_id: @renter.id)

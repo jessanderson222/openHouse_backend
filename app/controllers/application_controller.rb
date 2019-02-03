@@ -5,7 +5,6 @@ class ApplicationController < ActionController::API
     def encode_token(payload)
         # secret = Rails.application.secrets.MY_SECRET
         # payload => { beef: 'steak' }
-        binding.pry
         JWT.encode(payload, 'my_s3cr3t')
         # jwt string: "eyJhbGciOiJIUzI1NiJ9.eyJiZWVmIjoic3RlYWsifQ._IBTHTLGX35ZJWTCcY30tLmwU9arwdpNVxtVU0NpAuI"
       end
