@@ -1,4 +1,7 @@
+require "pry"
 class Api::V1::RentersController < ApplicationController
+    skip_before_action :authorized, only: [:create]
+    
     def index
         @renters = Renter.all 
         render(json: @renters)
@@ -10,9 +13,11 @@ class Api::V1::RentersController < ApplicationController
     end 
 
     def create
+        
         @renter = Renter.create(renter_params)
         if @renter.valid?
-        render json: { renter: RenterSerializer.new(@renter) },
+            @token = encode_token(renter_id: @renter.id)
+        render json: { renter: RenterSerializer.new(@renter), jwt: @token },
         status: :created 
         else 
             render json: {error: 'failed to create account'},
