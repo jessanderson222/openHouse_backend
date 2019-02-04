@@ -6,8 +6,8 @@ Rails.application.routes.draw do
       resources :pictures
       resources :properties
       resources :renters
-        post '/login', to: 'auth#create'
         get '/profile', to: 'renters#profile'
+        post '/login', to: 'auth#create'
     end
   end
 end

@@ -19,19 +19,21 @@ class Api::V1::RentersController < ApplicationController
     def create
         @renter = Renter.create(renter_params)
         if @renter.valid?
-            @token = encode_token(renter_id: @renter.id)
-        render json: { renter: RenterSerializer.new(@renter), jwt: @token },
-        status: :created 
+            token = JWT.encode({renter_id: @renter.id}, 'my_s3cr3t')
+            render json: { renter: @renter, jwt: token }
         else 
             render json: {error: 'failed to create account'},
-            status: :not_acceptable
+            status: 422
         end 
     end 
 
     def update
         @renter = Renter.find(params[:id])
-        @renter.update(renter_params)
-        render json: @renter, status: 200
+        if @renter.save 
+            render json: @renter, status: :accepted 
+        else 
+            render json: { errors: @renter.errors.full_messages}
+        end 
     end 
 
     private
