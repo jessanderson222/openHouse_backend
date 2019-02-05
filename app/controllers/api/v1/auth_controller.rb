@@ -1,9 +1,11 @@
+require 'pry'
 class Api::V1::AuthController < ApplicationController
     skip_before_action :authorized, only: [:create]
  
     def create
+      # binding.pry
       @renter = Renter.find_by(username: renter_login_params[:username])
-      #User#authenticate comes from BCrypt
+      #Renter#authenticate comes from BCrypt
       if @renter && @renter.authenticate(renter_login_params[:password])
         # encode token comes from ApplicationController
         token = encode_token({ renter_id: @renter.id })
@@ -14,6 +16,7 @@ class Api::V1::AuthController < ApplicationController
     end
 
     def show 
+      binding.pry
       string = request.authorization
       token = JWT.decode(string, 'my_s3cr3t')[0]
       id = token["renter_id"].to_i 

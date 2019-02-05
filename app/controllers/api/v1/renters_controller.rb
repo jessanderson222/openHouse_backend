@@ -1,6 +1,6 @@
 require "pry"
 class Api::V1::RentersController < ApplicationController
-    skip_before_action :authorized, only: [:create]
+    skip_before_action :authorized, only: [:create, :update]
     
     def profile 
         render json: { renter: RenterSerializer.new(current_renter) }, status: :accepted
@@ -28,8 +28,9 @@ class Api::V1::RentersController < ApplicationController
     end 
 
     def update
+        binding.pry
         @renter = Renter.find(params[:id])
-        if @renter.save 
+        if @renter.update(renter_params)
             render json: @renter, status: :accepted 
         else 
             render json: { errors: @renter.errors.full_messages}
