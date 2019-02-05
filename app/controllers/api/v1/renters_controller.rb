@@ -28,7 +28,7 @@ class Api::V1::RentersController < ApplicationController
     end 
 
     def update
-        binding.pry
+        
         @renter = Renter.find(params[:id])
         if @renter.update(renter_params)
             render json: @renter, status: :accepted 

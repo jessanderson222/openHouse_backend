@@ -1,3 +1,5 @@
+require 'pry'
+
 class Api::V1::MatchesController < ApplicationController
     def index
         @matches = Match.all 
@@ -30,7 +32,7 @@ class Api::V1::MatchesController < ApplicationController
 
     private
     def match_params
-        params.permit(:renter_id, property_id)
+        params.require(:match).permit(:renter_id, :property_id)
     end 
 
 end
