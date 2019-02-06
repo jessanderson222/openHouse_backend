@@ -1,6 +1,7 @@
 require "pry"
 class Api::V1::RentersController < ApplicationController
-    skip_before_action :authorized, only: [:create, :update]
+    skip_before_action :authorized
+    # only: [:create, :update]
     
     def profile 
         render json: { renter: RenterSerializer.new(current_renter) }, status: :accepted
@@ -39,7 +40,7 @@ class Api::V1::RentersController < ApplicationController
 
     private
     def renter_params 
-        params.require(:renter).permit(:username, :img_url, :password, :email, :bedrooms, :bathrooms, :distance_to_subway, :borough, :neighborhood, :pet_friendly, :elevator, :laundry, :doorman, :move_in_date, :rent_min, :rent_max)
+        params.require(:renter).permit(:username, :img_url, :matches, :password, :email, :bedrooms, :bathrooms, :distance_to_subway, :borough, :neighborhood, :pet_friendly, :elevator, :laundry, :doorman, :move_in_date, :rent_min, :rent_max)
     end 
  
 end

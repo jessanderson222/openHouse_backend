@@ -30,6 +30,6 @@ class Api::V1::PropertiesController < ApplicationController
 
     private 
     def property_params 
-        params.permit(:bedrooms, :bathrooms, :distance_to_subway, :borough, :neighborhood, :pet_friendly, :elevator, :laundry, :doorman, :move_in_date, :rent, :img_1, :img_2, :img_3)
+        params.require(:property).permit(:bedrooms, :matches, :bathrooms, :distance_to_subway, :borough, :neighborhood, :pet_friendly, :elevator, :laundry, :doorman, :move_in_date, :rent, :img_1, :img_2, :img_3)
     end 
 end

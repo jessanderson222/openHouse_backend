@@ -33,6 +33,6 @@ class Api::V1::AuthController < ApplicationController
    
     def renter_login_params
       # params { renter: {renter: 'Chandler Bing', password: 'hi' } }
-      params.require(:renter).permit(:username, :password)
+      params.require(:renter).permit(:username, :password, :matches)
     end
   end
