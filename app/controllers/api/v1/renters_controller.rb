@@ -1,6 +1,6 @@
 require "pry"
 class Api::V1::RentersController < ApplicationController
-    skip_before_action :authorized
+    skip_before_action :authorized, only: [:create, :update]
     # only: [:create, :update]
     
     def profile 
@@ -29,7 +29,7 @@ class Api::V1::RentersController < ApplicationController
     end 
 
     def update
-        
+        # byebug 
         @renter = Renter.find(params[:id])
         if @renter.update(renter_params)
             render json: @renter, status: :accepted 
@@ -40,7 +40,7 @@ class Api::V1::RentersController < ApplicationController
 
     private
     def renter_params 
-        params.require(:renter).permit(:username, :img_url, :matches, :password, :email, :bedrooms, :bathrooms, :distance_to_subway, :borough, :neighborhood, :pet_friendly, :elevator, :laundry, :doorman, :move_in_date, :rent_min, :rent_max)
+        params.require(:renter).permit(:username, :img_url, :matches, :properties, :password, :email, :bedrooms, :bathrooms, :distance_to_subway, :borough, :neighborhood, :pet_friendly, :elevator, :laundry, :doorman, :move_in_date, :t, :rent_max)
     end 
  
 end

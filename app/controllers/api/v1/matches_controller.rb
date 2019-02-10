@@ -1,6 +1,7 @@
 require 'pry'
 
 class Api::V1::MatchesController < ApplicationController
+    skip_before_action :authorized
     def index
         @matches = Match.all 
         render(json: @matches)

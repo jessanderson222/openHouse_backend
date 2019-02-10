@@ -16,7 +16,7 @@ class Api::V1::AuthController < ApplicationController
     end
 
     def show 
-      binding.pry
+      # binding.pry
       string = request.authorization
       token = JWT.decode(string, 'my_s3cr3t')[0]
       id = token["renter_id"].to_i 
@@ -33,6 +33,6 @@ class Api::V1::AuthController < ApplicationController
    
     def renter_login_params
       # params { renter: {renter: 'Chandler Bing', password: 'hi' } }
-      params.require(:renter).permit(:username, :password, :matches)
+      params.require(:renter).permit(:username, :password, :matches, :properties)
     end
   end
