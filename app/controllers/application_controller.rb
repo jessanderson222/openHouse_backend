@@ -27,17 +27,33 @@ class ApplicationController < ActionController::API
         end
     end 
 
-    def current_renter 
+    def current_user
         if decoded_token
+          # byebug 
           # decoded_token=> [{"user_id"=>2}, {"alg"=>"HS256"}]
           # or nil if we can't decode the token
-          renter_id = decoded_token[0]['renter_id']
-          @renter = Renter.find_by(id: renter_id)
+          user_id = decoded_token[0]['renter_id']
+          @user = Renter.find_by(id: user_id)
+          # if user found, return token for renter account
+          if @user.present?
+              return @user 
+          # if user not found, Agent.find_by token
+          else 
+            user_id = decoded_token[0]['agent_id']
+            @user = Agent.find_by(id: user_id)
+          # if user found, retrun agent token
+            if @user.present?
+              return @user
+          # if not found, return user not found
+            else return "not found"
+              
+            end 
+          end 
         end
-      end
+    end
      
       def logged_in?
-        !!current_renter
+        !!current_user
       end
 
       def authorized

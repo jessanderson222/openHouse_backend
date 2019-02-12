@@ -1,8 +1,10 @@
+require 'pry'
 class Api::V1::AgentsController < ApplicationController
     skip_before_action :authorized, only: [:create]
     
     def profile 
-        render json: { agent: AgentSerializer.new(current_agent) }, status: :accepted
+        
+        render json: { agent: AgentSerializer.new(current_user) }, status: :accepted
     end 
 
     def index

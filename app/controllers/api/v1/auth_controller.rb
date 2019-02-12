@@ -35,4 +35,7 @@ class Api::V1::AuthController < ApplicationController
       # params { renter: {renter: 'Chandler Bing', password: 'hi' } }
       params.require(:renter).permit(:username, :password, :matches, :properties)
     end
+
+    
+
   end
