@@ -4,7 +4,7 @@ class Api::V1::AgentsController < ApplicationController
     
     def profile 
         
-        render json: { agent: AgentSerializer.new(current_user) }, status: :accepted
+        render json: { agent: (current_user) }, status: :accepted
     end 
 
     def index
@@ -18,10 +18,11 @@ class Api::V1::AgentsController < ApplicationController
     end 
 
     def create
+        # byebug
         @agent = Agent.create(agent_params)
         if @agent.valid?
             token = JWT.encode({agent_id: @agent.id}, 'my_s3cr3t')
-            render json: { renter: @agent, jwt: token }
+            render json: { agent: @agent, jwt: token }
         else 
             render json: {error: 'failed to create account'},
             status: 422

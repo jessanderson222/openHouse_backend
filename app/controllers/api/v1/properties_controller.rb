@@ -1,4 +1,6 @@
 class Api::V1::PropertiesController < ApplicationController
+    skip_before_action :authorized
+    
     def index
         @properties = Property.all 
         render(json: @properties)
@@ -30,6 +32,6 @@ class Api::V1::PropertiesController < ApplicationController
 
     private 
     def property_params 
-        params.require(:property).permit(:bedrooms, :matches, :bathrooms, :distance_to_subway, :borough, :neighborhood, :pet_friendly, :elevator, :laundry, :doorman, :move_in_date, :rent, :img_1, :img_2, :img_3)
+        params.require(:property).permit(:agent_id, :bedrooms, :matches, :bathrooms, :distance_to_subway, :borough, :neighborhood, :pet_friendly, :elevator, :laundry, :doorman, :move_in_date, :rent, :img_1, :img_2, :img_3)
     end 
 end

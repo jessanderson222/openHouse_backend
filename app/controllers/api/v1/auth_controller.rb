@@ -36,6 +36,6 @@ class Api::V1::AuthController < ApplicationController
       params.require(:renter).permit(:username, :password, :matches, :properties)
     end
 
-    
+   
 
   end
