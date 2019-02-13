@@ -1,7 +1,7 @@
 require 'pry'
 class Api::V1::AgentsController < ApplicationController
     skip_before_action :authorized, only: [:create]
-    
+    wrap_parameters :agent, include: [:name, :img_url, :company, :email, :password]
     def profile 
         
         render json: { agent: (current_user) }, status: :accepted
@@ -18,7 +18,7 @@ class Api::V1::AgentsController < ApplicationController
     end 
 
     def create
-        # byebug
+        byebug
         @agent = Agent.create(agent_params)
         if @agent.valid?
             token = JWT.encode({agent_id: @agent.id}, 'my_s3cr3t')

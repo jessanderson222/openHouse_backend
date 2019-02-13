@@ -3,7 +3,7 @@ class Api::V1::AgentauthController < ApplicationController
     skip_before_action :authorized, only: [:create]
  
     def create
-        # byebug
+        byebug
     #   binding.pry
       @agent = Agent.find_by(email: agent_login_params[:email])
       #Renter#authenticate comes from BCrypt
