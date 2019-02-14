@@ -18,7 +18,7 @@ class Api::V1::AgentsController < ApplicationController
     end 
 
     def create
-        byebug
+        # byebug
         @agent = Agent.create(agent_params)
         if @agent.valid?
             token = JWT.encode({agent_id: @agent.id}, 'my_s3cr3t')
