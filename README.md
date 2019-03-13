@@ -1,25 +1,11 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Welcome to OpenHouse!
 
-Things you may want to cover:
+![](OpenHouse-match-gif.gif)
 
-* Ruby version
+Find the apartment that's the perfect match.
 
-* System dependencies
+To be used with OpenHouse frontend found at (https://github.com/jessanderson222/open_house_frontend)
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
 # openHouse_backend
